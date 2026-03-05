@@ -1,0 +1,9 @@
+streamlit==1.48.1
+pandas==2.3.2
+numpy==2.2.6
+scikit-learn==1.7.1
+xgboost==3.2.0
+folium==0.20.0
+streamlit-folium==0.26.1
+lightgbm==4.6.0
+geopy==2.4.1
