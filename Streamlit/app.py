@@ -9,6 +9,13 @@ import os
 import requests
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
+from pathlib import Path
+
+# --- FILE PATH CONFIGURATION ---
+# This ensures the app finds the .pkl files even if they are in a subfolder
+current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
+XGB_PATH = current_dir / "xgb_model.pkl"
+LGB_PATH = current_dir / "lgb_model.pkl"
 
 # Page configuration
 st.set_page_config(
@@ -349,11 +356,11 @@ with tab_book:
                                               st.session_state.d_lat, st.session_state.d_lon, 
                                               passengers, is_airport_trip)
             
-            fname = 'xgb_model.pkl' if "XGBoost" in model_choice else 'lgb_model.pkl'
-            fpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), fname)
+            # --- UPDATED PATH LOGIC ---
+            target_path = XGB_PATH if "XGBoost" in model_choice else LGB_PATH
             
-            if os.path.exists(fpath):
-                with open(fpath, 'rb') as f:
+            if target_path.exists():
+                with open(target_path, 'rb') as f:
                     model = pickle.load(f)
                 prediction = model.predict(input_df)[0]
                 
@@ -380,7 +387,7 @@ with tab_book:
                     price_km = prediction / final_dist if final_dist > 0 else 0
                     st.success(f"💸 **Rate:** ${price_km:.2f}/km")
             else:
-                st.error(f"Missing model: {fname}")
+                st.error(f"Missing model file at: {target_path}")
         except Exception as e:
             st.error(f"Calculation Error: {e}")
 
@@ -398,5 +405,4 @@ with tab_info:
 
 # Footer
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #999;'>GrabPredict Prototype | Data Science Portfolio | © 2026 Nawasena</p>", unsafe_allow_html=True)
-
+st.markdown("<p style='text-align: center; color: #999;'>GrabPredict Prototype | Data Science Portfolio | © 2026 Oimolala</p>", unsafe_allow_html=True)
