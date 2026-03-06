@@ -25,7 +25,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for Grab/Gojek Aesthetic
+# Custom CSS for Aesthetic
 st.markdown("""
     <style>
     /* Global Styles */
@@ -41,7 +41,7 @@ st.markdown("""
 
     /* Header Styling */
     .header-container {
-        background: linear-gradient(135deg, #00b14f 0%, #007d38 100%); /* Grab Green */
+        background: linear-gradient(135deg, #00b14f 0%, #007d38 100%); /* Uber Green */
         padding: 2.5rem;
         border-radius: 15px;
         color: white;
@@ -305,9 +305,9 @@ with tab_book:
 
         # Car Size Visual Indicator
         if passengers <= 4:
-            st.markdown('<div class="car-size-info" style="background-color: #e6f7ee; color: #333;">🚗 GrabCar (Standard)</div>', unsafe_allow_html=True)
+            st.markdown('<div class="car-size-info" style="background-color: #e6f7ee; color: #333;">🚗 Uber Taxi (Standard)</div>', unsafe_allow_html=True)
         else:
-            st.markdown('<div class="car-size-info" style="background-color: #fff4e6; color: #333;">🚙 GrabCar Plus (Large)</div>', unsafe_allow_html=True)
+            st.markdown('<div class="car-size-info" style="background-color: #fff4e6; color: #333;">🚙 Uber Taxi Plus (Large)</div>', unsafe_allow_html=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
         btn_predict = st.button("Calculate Fare")
@@ -393,7 +393,7 @@ with tab_book:
 
 with tab_info:
     st.markdown("""
-    ### About GrabPredict
+    ### About Uber Predict
     This application leverages advanced **Gradient Boosting** algorithms to estimate ride fares with high precision.
     
     - **Recommendations:** Search suggestions provided by Nominatim OpenStreetMap API.
@@ -405,4 +405,4 @@ with tab_info:
 
 # Footer
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #999;'>GrabPredict Prototype | Data Science Portfolio | © 2026 Oimolala</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #999;'>Uber Predict Prototype | Data Science Portfolio | © 2026 Oimolala</p>", unsafe_allow_html=True)
